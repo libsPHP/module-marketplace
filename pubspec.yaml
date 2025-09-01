@@ -93,6 +93,13 @@ dependencies:
   
   # AdMob
   google_mobile_ads: ^6.0.0
+  
+  # Production optimizations
+  dio_certificate_pinning: ^3.0.3
+  network_info_plus: ^4.1.0
+  device_info_plus: ^9.1.1
+  package_info_plus: ^4.2.0
+  sentry_flutter: ^7.18.0
 
 dev_dependencies:
   flutter_test:
@@ -100,7 +107,12 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner: ^2.4.7
   json_annotation: ^4.8.1
-  freezed_annotation: ^3.1.0
+  json_serializable: ^6.7.1
+  freezed: ^2.4.6
+  freezed_annotation: ^2.4.1
+  mockito: ^5.4.2
+  integration_test:
+    sdk: flutter
 
 flutter:
   generate: true

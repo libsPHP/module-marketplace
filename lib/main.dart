@@ -1,20 +1,28 @@
+import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 // Core imports
 import 'core/constants/app_constants.dart';
+import 'core/config/app_config.dart';
 import 'core/theme/app_theme.dart';
-import 'core/services/magento_api_service.dart';
+import 'core/services/api_service.dart';
+import 'core/services/network_service.dart';
 import 'core/services/theme_service.dart';
 import 'core/services/localization_service.dart';
 import 'core/services/analytics_service.dart';
 import 'core/services/notification_service.dart';
 import 'core/services/secure_storage_service.dart';
-import 'core/models/magento_models.dart';
 import 'core/providers/app_providers.dart';
 
 // Widgets
@@ -24,46 +32,168 @@ import 'core/widgets/loading_screen.dart';
 import 'screens/main_navigation_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  await runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-  // Set preferred orientations
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+    // Initialize Sentry for error tracking
+    await SentryFlutter.init(
+      (options) {
+        options.dsn = AppConfig.sentryDsn;
+        options.environment = AppConfig.environment;
+        options.release = '${AppConfig.appVersion}+${AppConfig.buildNumber}';
+        options.tracesSampleRate = kDebugMode ? 1.0 : 0.1;
+        options.beforeSend = (event, hint) {
+          if (kDebugMode) {
+            print('📊 Sentry Event: ${event.message ?? event.exception}');
+          }
+          return event;
+        };
+      },
+    );
 
-  // Set system UI overlay style
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.dark,
-    ),
-  );
+    await _initializeApp();
 
-  // Initialize services
-  await _initializeServices();
+    runApp(
+      const ProviderScope(
+        child: NativeMarketplaceApp(),
+      ),
+    );
+  }, (error, stack) {
+    // Global error handler
+    if (kDebugMode) {
+      print('❌ Global Error: $error');
+      print('Stack: $stack');
+    }
+    
+    // Report to Sentry in production
+    if (kReleaseMode) {
+      Sentry.captureException(error, stackTrace: stack);
+    }
+  });
+}
 
-  runApp(
-    const ProviderScope(
-      child: NativeMarketplaceApp(),
-    ),
-  );
+Future<void> _initializeApp() async {
+  try {
+    // Show splash screen while initializing
+    _showSplashScreen();
+
+    // Set preferred orientations
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    // Set system UI overlay style
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+    );
+
+    // Initialize Firebase
+    if (AppConfig.isFeatureEnabled('enableAnalytics') || 
+        AppConfig.isFeatureEnabled('enableCrashlytics')) {
+      await Firebase.initializeApp();
+      
+      if (AppConfig.isFeatureEnabled('enableCrashlytics') && kReleaseMode) {
+        FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+        PlatformDispatcher.instance.onError = (error, stack) {
+          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+          return true;
+        };
+      }
+    }
+
+    // Get device and app information
+    await _initializeDeviceInfo();
+
+    // Initialize core services
+    await _initializeServices();
+
+    if (kDebugMode) {
+      print('✅ App initialization completed successfully');
+    }
+  } catch (e, stack) {
+    if (kDebugMode) {
+      print('❌ App initialization failed: $e');
+      print('Stack: $stack');
+    }
+    
+    // Report initialization errors
+    if (kReleaseMode) {
+      await Sentry.captureException(e, stackTrace: stack);
+    }
+    
+    rethrow;
+  }
+}
+
+Future<void> _initializeDeviceInfo() async {
+  try {
+    final deviceInfo = DeviceInfoPlugin();
+    final packageInfo = await PackageInfo.fromPlatform();
+    
+    if (kDebugMode) {
+      print('📱 App Version: ${packageInfo.version}+${packageInfo.buildNumber}');
+      
+      if (Platform.isAndroid) {
+        final androidInfo = await deviceInfo.androidInfo;
+        print('📱 Android: ${androidInfo.model} (API ${androidInfo.version.sdkInt})');
+      } else if (Platform.isIOS) {
+        final iosInfo = await deviceInfo.iosInfo;
+        print('📱 iOS: ${iosInfo.model} (${iosInfo.systemVersion})');
+      }
+    }
+    
+    // Set user properties for analytics
+    if (AppConfig.isFeatureEnabled('enableAnalytics')) {
+      await AnalyticsService.setUserProperty('app_version', packageInfo.version);
+      await AnalyticsService.setUserProperty('build_number', packageInfo.buildNumber);
+      await AnalyticsService.setUserProperty('platform', Platform.operatingSystem);
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('⚠️ Failed to get device info: $e');
+    }
+  }
+}
+
+void _showSplashScreen() {
+  // Custom splash screen logic if needed
+  if (kDebugMode) {
+    print('🚀 Starting ${AppConfig.appName} v${AppConfig.appVersion}');
+    print('🌍 Environment: ${AppConfig.environment}');
+    print('🔗 API Base URL: ${AppConfig.apiBaseUrl}');
+  }
 }
 
 Future<void> _initializeServices() async {
-  // Initialize secure storage
+  // Initialize services in order
   await SecureStorageService.initialize();
   
+  // Initialize network service
+  final networkService = NetworkService();
+  await networkService.initialize();
+  
+  // Initialize API service
+  final apiService = ApiService();
+  await apiService.initialize();
+  
   // Initialize analytics
-  if (AppConstants.enableAnalytics) {
+  if (AppConfig.isFeatureEnabled('enableAnalytics')) {
     await AnalyticsService.initialize();
   }
   
   // Initialize notifications
-  if (AppConstants.enablePushNotifications) {
+  if (AppConfig.isFeatureEnabled('enablePushNotifications')) {
     await NotificationService.initialize();
+  }
+
+  if (kDebugMode) {
+    print('✅ All services initialized successfully');
   }
 }
 
