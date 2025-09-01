@@ -1,8 +1,8 @@
-name: native_marketplace
-description: "Native Flutter marketplace app similar to ScandiPWA for TaxLien.online"
+name: taxlien.online
+description: "Mobile application for investing in tax liens"
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 2.0.0+1
 
 environment:
   sdk: '>=3.2.3 <4.0.0'
@@ -19,6 +19,7 @@ dependencies:
   sqflite: ^2.3.0
   path: ^1.8.3
   url_launcher: ^6.2.1
+  webview_flutter: ^4.4.2
   
   # UI/UX improvements
   cupertino_icons: ^1.0.2
