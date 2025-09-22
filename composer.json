@@ -53,7 +53,13 @@
     },
     "extra": {
         "magento-root-dir": "../../../../../../",
-        "magento-force": true
+        "magento-force": true,
+        "map": [
+            [
+                "*",
+                "NativeMind/Marketplace"
+            ]
+        ]
     },
     "minimum-stability": "stable",
     "repositories": [
