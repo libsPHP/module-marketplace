@@ -3,7 +3,6 @@
     "description": "Transform your Magento 2 store into a powerful marketplace platform similar to Avito, Facebook Marketplace, Shopee, Lazada, AliExpress, or Ozone",
     "type": "magento2-module",
     "license": "MIT",
-    "version": "1.0.0",
     "authors": [
         {
             "name": "NativeMind",
