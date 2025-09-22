@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NativeMind Marketplace Admin Routes Configuration
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="marketplace" frontName="marketplace">
+            <module name="NativeMind_Marketplace"/>
+        </route>
+    </router>
+</config>

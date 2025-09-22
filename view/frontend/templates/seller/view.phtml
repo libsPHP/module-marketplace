@@ -1,0 +1,165 @@
+<?php
+/**
+ * NativeMind Marketplace Seller View Template
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+
+/** @var \NativeMind\Marketplace\Block\Seller\View $block */
+$seller = $block->getCurrentSeller();
+if (!$seller) {
+    return;
+}
+?>
+
+<div class="marketplace-seller-view">
+    <div class="seller-header">
+        <div class="seller-info">
+            <h1 class="seller-company-name"><?= $block->escapeHtml($block->getSellerCompanyName()) ?></h1>
+            
+            <?php if ($block->hasReviews()): ?>
+                <div class="seller-rating">
+                    <div class="rating-stars"><?= $block->getSellerRatingStars() ?></div>
+                    <span class="rating-value"><?= $block->escapeHtml($block->getSellerRating()) ?></span>
+                    <span class="review-count">(<?= $block->escapeHtml($block->getSellerReviewCount()) ?> reviews)</span>
+                </div>
+            <?php endif; ?>
+            
+            <div class="seller-stats">
+                <span class="product-count"><?= $block->escapeHtml($block->getSellerProductCount()) ?> products</span>
+                <?php if ($block->getSellerAddress()): ?>
+                    <span class="seller-location">📍 <?= $block->escapeHtml($block->getSellerAddress()) ?></span>
+                <?php endif; ?>
+            </div>
+        </div>
+        
+        <div class="seller-actions">
+            <a href="<?= $block->escapeUrl($block->getSellerProductsUrl()) ?>" class="action primary">
+                View All Products
+            </a>
+            <?php if ($block->hasReviews()): ?>
+                <a href="<?= $block->escapeUrl($block->getSellerReviewsUrl()) ?>" class="action secondary">
+                    View Reviews
+                </a>
+            <?php endif; ?>
+            <a href="<?= $block->escapeUrl($block->getSellerContactUrl()) ?>" class="action secondary">
+                Contact Seller
+            </a>
+        </div>
+    </div>
+    
+    <div class="seller-content">
+        <div class="seller-products">
+            <h2>Featured Products</h2>
+            <?= $block->getChildHtml('marketplace.seller.products') ?>
+        </div>
+        
+        <?php if ($block->hasReviews()): ?>
+            <div class="seller-reviews">
+                <h2>Recent Reviews</h2>
+                <?= $block->getChildHtml('marketplace.seller.reviews') ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<style>
+.marketplace-seller-view {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.seller-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.seller-info h1 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 28px;
+}
+
+.seller-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating-stars {
+    margin-right: 10px;
+}
+
+.star {
+    color: #ffc107;
+    font-size: 18px;
+}
+
+.star.empty {
+    color: #ddd;
+}
+
+.seller-stats {
+    display: flex;
+    gap: 20px;
+    color: #666;
+}
+
+.seller-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.action.primary {
+    background: #007bff;
+    color: white;
+}
+
+.action.secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.seller-content {
+    display: grid;
+    gap: 30px;
+}
+
+.seller-products h2,
+.seller-reviews h2 {
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .seller-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .seller-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>

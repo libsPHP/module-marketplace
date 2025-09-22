@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NativeMind Marketplace Seller View Layout
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="NativeMind\Marketplace\Block\Seller\View" name="marketplace.seller.view" template="NativeMind_Marketplace::seller/view.phtml">
+                <block class="NativeMind\Marketplace\Block\Seller\Info" name="marketplace.seller.info" template="NativeMind_Marketplace::seller/info.phtml"/>
+                <block class="NativeMind\Marketplace\Block\Seller\Products" name="marketplace.seller.products" template="NativeMind_Marketplace::seller/products.phtml"/>
+                <block class="NativeMind\Marketplace\Block\Seller\Reviews" name="marketplace.seller.reviews" template="NativeMind_Marketplace::seller/reviews.phtml"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

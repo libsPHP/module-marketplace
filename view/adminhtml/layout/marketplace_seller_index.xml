@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NativeMind Marketplace Admin Seller Index Layout
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="NativeMind\Marketplace\Block\Adminhtml\Seller\Grid" name="marketplace.seller.grid" as="grid"/>
+        </referenceContainer>
+    </body>
+</page>

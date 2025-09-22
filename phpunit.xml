@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NativeMind Marketplace PHPUnit Configuration
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+-->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:phpunit:phpunit:9.0:phpunit.xsd">
+    <testsuites>
+        <testsuite name="NativeMind_Marketplace_Unit">
+            <directory>Test/Unit</directory>
+        </testsuite>
+        <testsuite name="NativeMind_Marketplace_Integration">
+            <directory>Test/Integration</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">.</directory>
+            <exclude>
+                <directory>Test</directory>
+                <directory>Test/Unit</directory>
+                <directory>Test/Integration</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="coverage"/>
+        <log type="coverage-clover" target="coverage.xml"/>
+    </logging>
+</phpunit>

@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NativeMind Marketplace Module Web API Configuration
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    
+    <!-- Seller Management APIs -->
+    <route url="/V1/marketplace/sellers" method="GET">
+        <service class="NativeMind\Marketplace\Api\SellerRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/sellers/:sellerId" method="GET">
+        <service class="NativeMind\Marketplace\Api\SellerRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/sellers" method="POST">
+        <service class="NativeMind\Marketplace\Api\SellerRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/sellers/:sellerId" method="PUT">
+        <service class="NativeMind\Marketplace\Api\SellerRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/sellers/:sellerId" method="DELETE">
+        <service class="NativeMind\Marketplace\Api\SellerRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <!-- Seller Products APIs -->
+    <route url="/V1/marketplace/sellers/:sellerId/products" method="GET">
+        <service class="NativeMind\Marketplace\Api\ProductRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/sellers/:sellerId/products" method="POST">
+        <service class="NativeMind\Marketplace\Api\ProductRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/sellers/:sellerId/products/:productId" method="PUT">
+        <service class="NativeMind\Marketplace\Api\ProductRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/sellers/:sellerId/products/:productId" method="DELETE">
+        <service class="NativeMind\Marketplace\Api\ProductRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Magento_Catalog::products"/>
+        </resources>
+    </route>
+    
+    <!-- Reviews APIs -->
+    <route url="/V1/marketplace/reviews" method="GET">
+        <service class="NativeMind\Marketplace\Api\ReviewRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/reviews/:reviewId" method="GET">
+        <service class="NativeMind\Marketplace\Api\ReviewRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/reviews" method="POST">
+        <service class="NativeMind\Marketplace\Api\ReviewRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <!-- Messages APIs -->
+    <route url="/V1/marketplace/messages" method="GET">
+        <service class="NativeMind\Marketplace\Api\MessageRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/messages/:messageId" method="GET">
+        <service class="NativeMind\Marketplace\Api\MessageRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/messages" method="POST">
+        <service class="NativeMind\Marketplace\Api\MessageRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <!-- Seller Management APIs -->
+    <route url="/V1/marketplace/seller/register" method="POST">
+        <service class="NativeMind\Marketplace\Api\SellerManagementInterface" method="register"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/seller/:sellerId/approve" method="POST">
+        <service class="NativeMind\Marketplace\Api\SellerManagementInterface" method="approve"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/seller/:sellerId/suspend" method="POST">
+        <service class="NativeMind\Marketplace\Api\SellerManagementInterface" method="suspend"/>
+        <resources>
+            <resource ref="Magento_Customer::manage"/>
+        </resources>
+    </route>
+    
+    <!-- Commission APIs -->
+    <route url="/V1/marketplace/commission/calculate" method="POST">
+        <service class="NativeMind\Marketplace\Api\CommissionCalculatorInterface" method="calculate"/>
+        <resources>
+            <resource ref="Magento_Sales::sales"/>
+        </resources>
+    </route>
+    
+</routes>

@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NativeMind Marketplace Module Dependency Injection Configuration
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    
+    <!-- Preferences -->
+    <preference for="NativeMind\Marketplace\Api\SellerRepositoryInterface" type="NativeMind\Marketplace\Model\SellerRepository"/>
+    <preference for="NativeMind\Marketplace\Api\ProductRepositoryInterface" type="NativeMind\Marketplace\Model\ProductRepository"/>
+    <preference for="NativeMind\Marketplace\Api\ReviewRepositoryInterface" type="NativeMind\Marketplace\Model\ReviewRepository"/>
+    <preference for="NativeMind\Marketplace\Api\MessageRepositoryInterface" type="NativeMind\Marketplace\Model\MessageRepository"/>
+    
+    <!-- Virtual Types -->
+    <virtualType name="NativeMind\Marketplace\Model\ResourceModel\Seller\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">native_marketplace_seller</argument>
+            <argument name="resourceModel" xsi:type="string">NativeMind\Marketplace\Model\ResourceModel\Seller</argument>
+        </arguments>
+    </virtualType>
+    
+    <virtualType name="NativeMind\Marketplace\Model\ResourceModel\Product\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">native_marketplace_product</argument>
+            <argument name="resourceModel" xsi:type="string">NativeMind\Marketplace\Model\ResourceModel\Product</argument>
+        </arguments>
+    </virtualType>
+    
+    <!-- Data Providers -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="native_marketplace_seller_listing_data_source" xsi:type="string">NativeMind\Marketplace\Model\ResourceModel\Seller\Grid\Collection</item>
+                <item name="native_marketplace_product_listing_data_source" xsi:type="string">NativeMind\Marketplace\Model\ResourceModel\Product\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <!-- API Services -->
+    <type name="NativeMind\Marketplace\Api\SellerManagementInterface">
+        <arguments>
+            <argument name="sellerRepository" xsi:type="object">NativeMind\Marketplace\Api\SellerRepositoryInterface</argument>
+            <argument name="customerRepository" xsi:type="object">Magento\Customer\Api\CustomerRepositoryInterface</argument>
+        </arguments>
+    </type>
+    
+    <type name="NativeMind\Marketplace\Api\ProductManagementInterface">
+        <arguments>
+            <argument name="productRepository" xsi:type="object">NativeMind\Marketplace\Api\ProductRepositoryInterface</argument>
+            <argument name="catalogProductRepository" xsi:type="object">Magento\Catalog\Api\ProductRepositoryInterface</argument>
+        </arguments>
+    </type>
+    
+    <!-- Event Observers -->
+    <type name="NativeMind\Marketplace\Observer\CustomerSaveAfter">
+        <arguments>
+            <argument name="sellerRepository" xsi:type="object">NativeMind\Marketplace\Api\SellerRepositoryInterface</argument>
+        </arguments>
+    </type>
+    
+    <type name="NativeMind\Marketplace\Observer\ProductSaveAfter">
+        <arguments>
+            <argument name="productRepository" xsi:type="object">NativeMind\Marketplace\Api\ProductRepositoryInterface</argument>
+        </arguments>
+    </type>
+    
+    <!-- Helper Services -->
+    <type name="NativeMind\Marketplace\Helper\Data">
+        <arguments>
+            <argument name="scopeConfig" xsi:type="object">Magento\Framework\App\Config\ScopeConfigInterface</argument>
+        </arguments>
+    </type>
+    
+    <type name="NativeMind\Marketplace\Helper\Seller">
+        <arguments>
+            <argument name="sellerRepository" xsi:type="object">NativeMind\Marketplace\Api\SellerRepositoryInterface</argument>
+            <argument name="customerRepository" xsi:type="object">Magento\Customer\Api\CustomerRepositoryInterface</argument>
+        </arguments>
+    </type>
+    
+    <!-- Commission Calculator -->
+    <type name="NativeMind\Marketplace\Model\CommissionCalculator">
+        <arguments>
+            <argument name="scopeConfig" xsi:type="object">Magento\Framework\App\Config\ScopeConfigInterface</argument>
+        </arguments>
+    </type>
+    
+    <!-- Subdomain Handler -->
+    <type name="NativeMind\Marketplace\Model\SubdomainHandler">
+        <arguments>
+            <argument name="storeManager" xsi:type="object">Magento\Store\Model\StoreManagerInterface</argument>
+            <argument name="sellerRepository" xsi:type="object">NativeMind\Marketplace\Api\SellerRepositoryInterface</argument>
+        </arguments>
+    </type>
+    
+</config>

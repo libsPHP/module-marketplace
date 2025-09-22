@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NativeMind Marketplace Module Configuration
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <marketplace>
+            <general>
+                <enabled>1</enabled>
+                <allow_seller_registration>1</allow_seller_registration>
+                <require_seller_approval>1</require_seller_approval>
+                <default_commission_rate>5.0</default_commission_rate>
+                <allow_subdomain>1</allow_subdomain>
+                <allow_subdirectory>1</allow_subdirectory>
+            </general>
+            <seller>
+                <auto_approve>0</auto_approve>
+                <require_document_verification>1</require_document_verification>
+                <min_rating_for_approval>3.0</min_rating_for_approval>
+                <max_products_per_seller>1000</max_products_per_seller>
+            </seller>
+            <product>
+                <require_approval>1</require_approval>
+                <allow_used_products>1</allow_used_products>
+                <max_images_per_product>10</max_images_per_product>
+                <auto_approve_products>0</auto_approve_products>
+            </product>
+            <commission>
+                <default_rate>5.0</default_rate>
+                <min_rate>1.0</min_rate>
+                <max_rate>20.0</max_rate>
+                <tax_included>1</tax_included>
+            </commission>
+            <messaging>
+                <enabled>1</enabled>
+                <allow_anonymous_messages>0</allow_anonymous_messages>
+                <moderate_messages>0</moderate_messages>
+            </messaging>
+            <rating>
+                <enabled>1</enabled>
+                <require_purchase>1</require_purchase>
+                <allow_anonymous_reviews>0</allow_anonymous_reviews>
+                <moderate_reviews>1</moderate_reviews>
+            </rating>
+        </marketplace>
+    </default>
+</config>

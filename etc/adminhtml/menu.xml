@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NativeMind Marketplace Admin Menu Configuration
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="NativeMind_Marketplace::marketplace" title="Marketplace" module="NativeMind_Marketplace" sortOrder="100" resource="NativeMind_Marketplace::marketplace" parent="Magento_Catalog::catalog"/>
+        
+        <add id="NativeMind_Marketplace::sellers" title="Sellers" module="NativeMind_Marketplace" sortOrder="10" resource="NativeMind_Marketplace::sellers" parent="NativeMind_Marketplace::marketplace"/>
+        <add id="NativeMind_Marketplace::sellers_manage" title="Manage Sellers" module="NativeMind_Marketplace" sortOrder="10" resource="NativeMind_Marketplace::sellers" parent="NativeMind_Marketplace::sellers" action="marketplace/seller/index"/>
+        <add id="NativeMind_Marketplace::sellers_pending" title="Pending Approval" module="NativeMind_Marketplace" sortOrder="20" resource="NativeMind_Marketplace::sellers" parent="NativeMind_Marketplace::sellers" action="marketplace/seller/pending"/>
+        
+        <add id="NativeMind_Marketplace::products" title="Products" module="NativeMind_Marketplace" sortOrder="20" resource="NativeMind_Marketplace::products" parent="NativeMind_Marketplace::marketplace"/>
+        <add id="NativeMind_Marketplace::products_manage" title="Manage Products" module="NativeMind_Marketplace" sortOrder="10" resource="NativeMind_Marketplace::products" parent="NativeMind_Marketplace::products" action="marketplace/product/index"/>
+        <add id="NativeMind_Marketplace::products_pending" title="Pending Approval" module="NativeMind_Marketplace" sortOrder="20" resource="NativeMind_Marketplace::products" parent="NativeMind_Marketplace::products" action="marketplace/product/pending"/>
+        
+        <add id="NativeMind_Marketplace::reviews" title="Reviews" module="NativeMind_Marketplace" sortOrder="30" resource="NativeMind_Marketplace::reviews" parent="NativeMind_Marketplace::marketplace"/>
+        <add id="NativeMind_Marketplace::reviews_manage" title="Manage Reviews" module="NativeMind_Marketplace" sortOrder="10" resource="NativeMind_Marketplace::reviews" parent="NativeMind_Marketplace::reviews" action="marketplace/review/index"/>
+        <add id="NativeMind_Marketplace::reviews_pending" title="Pending Approval" module="NativeMind_Marketplace" sortOrder="20" resource="NativeMind_Marketplace::reviews" parent="NativeMind_Marketplace::reviews" action="marketplace/review/pending"/>
+        
+        <add id="NativeMind_Marketplace::messages" title="Messages" module="NativeMind_Marketplace" sortOrder="40" resource="NativeMind_Marketplace::messages" parent="NativeMind_Marketplace::marketplace"/>
+        <add id="NativeMind_Marketplace::messages_manage" title="Manage Messages" module="NativeMind_Marketplace" sortOrder="10" resource="NativeMind_Marketplace::messages" parent="NativeMind_Marketplace::messages" action="marketplace/message/index"/>
+        
+        <add id="NativeMind_Marketplace::commission" title="Commission" module="NativeMind_Marketplace" sortOrder="50" resource="NativeMind_Marketplace::commission" parent="NativeMind_Marketplace::marketplace"/>
+        <add id="NativeMind_Marketplace::commission_manage" title="Commission Reports" module="NativeMind_Marketplace" sortOrder="10" resource="NativeMind_Marketplace::commission" parent="NativeMind_Marketplace::commission" action="marketplace/commission/index"/>
+        <add id="NativeMind_Marketplace::commission_settings" title="Commission Settings" module="NativeMind_Marketplace" sortOrder="20" resource="NativeMind_Marketplace::commission" parent="NativeMind_Marketplace::commission" action="marketplace/commission/settings"/>
+        
+        <add id="NativeMind_Marketplace::analytics" title="Analytics" module="NativeMind_Marketplace" sortOrder="60" resource="NativeMind_Marketplace::analytics" parent="NativeMind_Marketplace::marketplace"/>
+        <add id="NativeMind_Marketplace::analytics_dashboard" title="Dashboard" module="NativeMind_Marketplace" sortOrder="10" resource="NativeMind_Marketplace::analytics" parent="NativeMind_Marketplace::analytics" action="marketplace/analytics/dashboard"/>
+        <add id="NativeMind_Marketplace::analytics_sellers" title="Seller Analytics" module="NativeMind_Marketplace" sortOrder="20" resource="NativeMind_Marketplace::analytics" parent="NativeMind_Marketplace::analytics" action="marketplace/analytics/sellers"/>
+        <add id="NativeMind_Marketplace::analytics_products" title="Product Analytics" module="NativeMind_Marketplace" sortOrder="30" resource="NativeMind_Marketplace::analytics" parent="NativeMind_Marketplace::analytics" action="marketplace/analytics/products"/>
+        
+        <add id="NativeMind_Marketplace::settings" title="Settings" module="NativeMind_Marketplace" sortOrder="70" resource="NativeMind_Marketplace::settings" parent="NativeMind_Marketplace::marketplace"/>
+        <add id="NativeMind_Marketplace::settings_general" title="General Settings" module="NativeMind_Marketplace" sortOrder="10" resource="NativeMind_Marketplace::settings" parent="NativeMind_Marketplace::settings" action="admin/system_config/edit/section/marketplace"/>
+        <add id="NativeMind_Marketplace::settings_subdomain" title="Subdomain Settings" module="NativeMind_Marketplace" sortOrder="20" resource="NativeMind_Marketplace::settings" parent="NativeMind_Marketplace::settings" action="marketplace/settings/subdomain"/>
+    </menu>
+</config>

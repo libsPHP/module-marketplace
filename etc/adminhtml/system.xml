@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NativeMind Marketplace Admin System Configuration
+ *
+ * @category    NativeMind
+ * @package     NativeMind_Marketplace
+ * @author      NativeMind <contact@nativemind.net>
+ * @copyright   Copyright (c) 2024 NativeMind (https://nativemind.net)
+ * @license     https://opensource.org/licenses/MIT
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="marketplace" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Marketplace</label>
+            <tab>marketplace</tab>
+            <resource>NativeMind_Marketplace::config</resource>
+            
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Marketplace</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable the marketplace functionality</comment>
+                </field>
+                <field id="allow_seller_registration" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Seller Registration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allow customers to register as sellers</comment>
+                </field>
+                <field id="require_seller_approval" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Require Seller Approval</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Require admin approval for new sellers</comment>
+                </field>
+                <field id="default_commission_rate" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Commission Rate (%)</label>
+                    <comment>Default commission rate for sellers</comment>
+                    <validate>required-entry validate-number validate-number-range number-range-0-100</validate>
+                </field>
+                <field id="allow_subdomain" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Subdomains</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allow sellers to have subdomains (seller1.yourstore.com)</comment>
+                </field>
+                <field id="allow_subdirectory" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Subdirectories</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allow sellers to have subdirectories (/seller/seller1/)</comment>
+                </field>
+            </group>
+            
+            <group id="seller" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Seller Settings</label>
+                <field id="auto_approve" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auto Approve Sellers</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Automatically approve new sellers</comment>
+                </field>
+                <field id="require_document_verification" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Require Document Verification</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Require sellers to upload verification documents</comment>
+                </field>
+                <field id="min_rating_for_approval" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Rating for Approval</label>
+                    <comment>Minimum rating required for seller approval</comment>
+                    <validate>required-entry validate-number validate-number-range number-range-0-5</validate>
+                </field>
+                <field id="max_products_per_seller" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Products per Seller</label>
+                    <comment>Maximum number of products a seller can have</comment>
+                    <validate>required-entry validate-number validate-number-range number-range-1-10000</validate>
+                </field>
+            </group>
+            
+            <group id="product" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Settings</label>
+                <field id="require_approval" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Require Product Approval</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Require admin approval for new products</comment>
+                </field>
+                <field id="allow_used_products" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Used Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allow sellers to list used products</comment>
+                </field>
+                <field id="max_images_per_product" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Images per Product</label>
+                    <comment>Maximum number of images per product</comment>
+                    <validate>required-entry validate-number validate-number-range number-range-1-50</validate>
+                </field>
+                <field id="auto_approve_products" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auto Approve Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Automatically approve new products</comment>
+                </field>
+            </group>
+            
+            <group id="commission" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Commission Settings</label>
+                <field id="default_rate" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Commission Rate (%)</label>
+                    <comment>Default commission rate for all sellers</comment>
+                    <validate>required-entry validate-number validate-number-range number-range-0-100</validate>
+                </field>
+                <field id="min_rate" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Commission Rate (%)</label>
+                    <comment>Minimum commission rate allowed</comment>
+                    <validate>required-entry validate-number validate-number-range number-range-0-100</validate>
+                </field>
+                <field id="max_rate" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum Commission Rate (%)</label>
+                    <comment>Maximum commission rate allowed</comment>
+                    <validate>required-entry validate-number validate-number-range number-range-0-100</validate>
+                </field>
+                <field id="tax_included" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tax Included in Commission</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Include tax in commission calculation</comment>
+                </field>
+            </group>
+            
+            <group id="messaging" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Messaging Settings</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Messaging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable internal messaging system</comment>
+                </field>
+                <field id="allow_anonymous_messages" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Anonymous Messages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allow anonymous users to send messages</comment>
+                </field>
+                <field id="moderate_messages" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Moderate Messages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Require admin approval for messages</comment>
+                </field>
+            </group>
+            
+            <group id="rating" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Rating Settings</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Rating System</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable seller rating and review system</comment>
+                </field>
+                <field id="require_purchase" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Require Purchase for Rating</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Require customers to make a purchase before rating</comment>
+                </field>
+                <field id="allow_anonymous_reviews" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Anonymous Reviews</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allow anonymous users to leave reviews</comment>
+                </field>
+                <field id="moderate_reviews" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Moderate Reviews</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Require admin approval for reviews</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
