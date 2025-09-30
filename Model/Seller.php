@@ -472,3 +472,4 @@ class Seller extends AbstractModel implements SellerInterface
         return $approvalLabels[$this->getApprovalStatus()] ?? __('Unknown');
     }
 }
+

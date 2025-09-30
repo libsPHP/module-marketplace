@@ -184,3 +184,4 @@ interface ProductManagementInterface
      */
     public function getProductApprovalStatus(int $sellerId, int $productId): string;
 }
+

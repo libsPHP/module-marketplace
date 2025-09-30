@@ -142,3 +142,4 @@ interface MessageRepositoryInterface
      */
     public function getBySellerAndCustomer(int $sellerId, int $customerId, SearchCriteriaInterface $searchCriteria): SearchResultsInterface;
 }
+

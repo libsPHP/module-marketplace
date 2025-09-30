@@ -85,3 +85,4 @@ class View extends Action implements HttpGetActionInterface
         return $page;
     }
 }
+

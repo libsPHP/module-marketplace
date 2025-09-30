@@ -354,3 +354,4 @@ interface SellerInterface
      */
     public function setUpdatedAt(string $updatedAt): SellerInterface;
 }
+

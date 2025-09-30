@@ -43,3 +43,4 @@
         <add id="NativeMind_Marketplace::settings_subdomain" title="Subdomain Settings" module="NativeMind_Marketplace" sortOrder="20" resource="NativeMind_Marketplace::settings" parent="NativeMind_Marketplace::settings" action="marketplace/settings/subdomain"/>
     </menu>
 </config>
+

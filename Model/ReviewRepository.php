@@ -267,3 +267,4 @@ class ReviewRepository implements ReviewRepositoryInterface
         return $searchResults;
     }
 }
+

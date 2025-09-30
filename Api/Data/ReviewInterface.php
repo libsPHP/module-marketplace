@@ -178,3 +178,4 @@ interface ReviewInterface
      */
     public function setUpdatedAt(string $updatedAt): ReviewInterface;
 }
+

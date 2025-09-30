@@ -187,3 +187,4 @@ class ProductTest extends TestCase
         $this->assertArrayHasKey(Product::CONDITION_FOR_PARTS, $conditions);
     }
 }
+

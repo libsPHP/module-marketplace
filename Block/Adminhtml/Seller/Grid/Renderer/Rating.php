@@ -43,3 +43,4 @@ class Rating extends AbstractRenderer
         return $stars . ' (' . number_format($rating, 1) . ')';
     }
 }
+

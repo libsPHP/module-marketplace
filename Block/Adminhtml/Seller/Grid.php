@@ -267,3 +267,4 @@ class Grid extends Extended
         return $this->getUrl('*/*/grid', ['_current' => true]);
     }
 }
+

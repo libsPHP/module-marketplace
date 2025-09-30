@@ -264,3 +264,4 @@ class ProductRepository implements ProductRepositoryInterface
         return $searchResults;
     }
 }
+

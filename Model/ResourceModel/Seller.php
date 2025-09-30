@@ -269,3 +269,4 @@ class Seller extends AbstractDb
         return $result ?: null;
     }
 }
+

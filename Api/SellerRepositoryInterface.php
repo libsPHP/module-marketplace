@@ -111,3 +111,4 @@ interface SellerRepositoryInterface
      */
     public function getPendingSellers(SearchCriteriaInterface $searchCriteria): SearchResultsInterface;
 }
+

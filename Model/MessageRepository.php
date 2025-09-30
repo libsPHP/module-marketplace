@@ -291,3 +291,4 @@ class MessageRepository implements MessageRepositoryInterface
         return $searchResults;
     }
 }
+

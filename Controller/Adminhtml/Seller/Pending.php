@@ -59,3 +59,4 @@ class Pending extends Action
         return $resultPage;
     }
 }
+

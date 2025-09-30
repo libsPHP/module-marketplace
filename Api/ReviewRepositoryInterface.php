@@ -129,3 +129,4 @@ interface ReviewRepositoryInterface
      */
     public function getByRating(int $rating, SearchCriteriaInterface $searchCriteria): SearchResultsInterface;
 }
+

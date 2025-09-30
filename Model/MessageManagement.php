@@ -268,3 +268,4 @@ class MessageManagement implements MessageManagementInterface
         return [];
     }
 }
+

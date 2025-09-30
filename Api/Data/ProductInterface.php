@@ -130,3 +130,4 @@ interface ProductInterface
      */
     public function setUpdatedAt(string $updatedAt): ProductInterface;
 }
+

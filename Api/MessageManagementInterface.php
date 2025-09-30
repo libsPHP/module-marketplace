@@ -186,3 +186,4 @@ interface MessageManagementInterface
      */
     public function getArchivedConversations(int $userId, bool $isSeller = false, int $limit = 20, int $offset = 0): array;
 }
+

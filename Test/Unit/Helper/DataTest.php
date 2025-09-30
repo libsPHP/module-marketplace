@@ -348,3 +348,4 @@ class DataTest extends TestCase
         $this->assertTrue($this->helper->isReviewModerationRequired());
     }
 }
+

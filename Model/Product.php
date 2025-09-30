@@ -258,3 +258,4 @@ class Product extends AbstractModel implements ProductInterface
         ];
     }
 }
+

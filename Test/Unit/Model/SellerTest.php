@@ -233,3 +233,4 @@ class SellerTest extends TestCase
         $this->assertEquals('Rejected', $this->seller->getApprovalStatusLabel());
     }
 }
+

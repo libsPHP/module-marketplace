@@ -221,3 +221,4 @@ class SellerRepository implements SellerRepositoryInterface
         return $searchResults;
     }
 }
+

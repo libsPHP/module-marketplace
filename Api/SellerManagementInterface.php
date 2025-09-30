@@ -145,3 +145,4 @@ interface SellerManagementInterface
      */
     public function sendNotification(int $sellerId, string $type, array $data = []): bool;
 }
+

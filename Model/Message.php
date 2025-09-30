@@ -292,3 +292,4 @@ class Message extends AbstractModel implements MessageInterface
         return $this->setIsRead(self::NOT_READ);
     }
 }
+

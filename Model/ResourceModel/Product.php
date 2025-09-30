@@ -370,3 +370,4 @@ class Product extends AbstractDb
         return $this;
     }
 }
+

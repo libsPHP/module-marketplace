@@ -131,3 +131,4 @@ interface ProductRepositoryInterface
      */
     public function getBySellerAndCondition(int $sellerId, string $condition, SearchCriteriaInterface $searchCriteria): SearchResultsInterface;
 }
+

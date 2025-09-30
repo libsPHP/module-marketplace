@@ -178,3 +178,4 @@ interface MessageInterface
      */
     public function setUpdatedAt(string $updatedAt): MessageInterface;
 }
+

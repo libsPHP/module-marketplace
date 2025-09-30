@@ -70,3 +70,4 @@ class Approve extends Action
         return $this->resultRedirectFactory->create()->setPath('*/*/');
     }
 }
+

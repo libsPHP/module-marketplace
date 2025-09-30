@@ -71,3 +71,4 @@ class Reject extends Action
         return $this->resultRedirectFactory->create()->setPath('*/*/');
     }
 }
+

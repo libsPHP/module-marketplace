@@ -16,3 +16,4 @@ ComponentRegistrar::register(
     'NativeMind_Marketplace',
     __DIR__
 );
+

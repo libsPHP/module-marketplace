@@ -34,3 +34,4 @@
         <log type="coverage-clover" target="coverage.xml"/>
     </logging>
 </phpunit>
+

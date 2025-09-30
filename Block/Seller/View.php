@@ -307,3 +307,4 @@ class View extends Template
         ];
     }
 }
+

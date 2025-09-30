@@ -161,3 +161,4 @@ interface ReviewManagementInterface
      */
     public function updateSellerRating(int $sellerId): bool;
 }
+
