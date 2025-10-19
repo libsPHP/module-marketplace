@@ -17,6 +17,8 @@
     <preference for="NativeMind\Marketplace\Api\ProductRepositoryInterface" type="NativeMind\Marketplace\Model\ProductRepository"/>
     <preference for="NativeMind\Marketplace\Api\ReviewRepositoryInterface" type="NativeMind\Marketplace\Model\ReviewRepository"/>
     <preference for="NativeMind\Marketplace\Api\MessageRepositoryInterface" type="NativeMind\Marketplace\Model\MessageRepository"/>
+    <preference for="NativeMind\Marketplace\Api\AdminManagementInterface" type="NativeMind\Marketplace\Model\AdminManagement"/>
+    <preference for="NativeMind\Marketplace\Api\Data\StatsInterface" type="NativeMind\Marketplace\Model\Stats"/>
     
     <!-- Virtual Types -->
     <virtualType name="NativeMind\Marketplace\Model\ResourceModel\Seller\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">

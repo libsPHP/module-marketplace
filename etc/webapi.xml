@@ -151,5 +151,76 @@
         </resources>
     </route>
     
+    <!-- Admin Management APIs -->
+    <route url="/V1/marketplace/admin/stats" method="GET">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="getStats"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/admin/sellers/pending" method="GET">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="getPendingSellers"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/admin/sellers/:sellerId/approve" method="POST">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="approveSeller"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/admin/sellers/:sellerId/reject" method="POST">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="rejectSeller"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/admin/sellers/bulk-approve" method="POST">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="bulkApproveSellers"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/admin/sellers/bulk-reject" method="POST">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="bulkRejectSellers"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/admin/sellers/:sellerId/activity" method="GET">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="getSellerActivityLog"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/admin/sellers/:sellerId/status" method="PUT">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="updateSellerStatus"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/admin/configuration" method="GET">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="getConfiguration"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
+    <route url="/V1/marketplace/admin/configuration" method="POST">
+        <service class="NativeMind\Marketplace\Api\AdminManagementInterface" method="updateConfiguration"/>
+        <resources>
+            <resource ref="NativeMind_Marketplace::admin"/>
+        </resources>
+    </route>
+    
 </routes>
 
